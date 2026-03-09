@@ -73,6 +73,16 @@ export const editStudent = async (studentId, studentData) => {
   return instance.put(`/student/edit/${studentId}`, studentData);
 };
 
+export const getStudentsBySection = (sectionId) => {
+  return instance.get(`/students/section/${sectionId}`);
+};
+
+export const generateRollNumbers = (sectionId) => {
+  return instance.patch(
+    `/students/sections/${sectionId}/generate-roll-numbers`
+  );
+};
+
 
 
 

@@ -21,7 +21,7 @@ const StudentList = () => {
   const [statusFilter, setStatusFilter] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const studentsPerPage = 5;
+  const studentsPerPage = 2;
   const [toast, setToast] = useState(null);
   const [confirmDialog, setConfirmDialog] = useState(null);
   const [updating, setUpdating] = useState(false);

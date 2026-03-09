@@ -18,6 +18,7 @@ import AdminRoutes from "./AdminRoutes";
 import StudentList from "../pages/admin/students/StudentList";
 import AddStudent from "../pages/admin/students/AddStudent";
 import StudentRegistration from "../pages/admin/students/StudentRegistration";
+import GenerateRollNumbers from "../pages/admin/students/GenerateRollNumbers";
 
 const AppRoutes = () => {
   return (
@@ -56,6 +57,7 @@ const AppRoutes = () => {
         <Route index element={<das />} />
         <Route path="students" element={<StudentList />} />
         <Route path="students/add" element={<StudentRegistration />} />
+        <Route path="students/rollnumber" element={<GenerateRollNumbers/>}/>
       </Route>
 
       {/* STUDENT */}
