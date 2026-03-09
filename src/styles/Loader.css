@@ -1,0 +1,41 @@
+/* Centered loader without overlay */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Full screen overlay loader */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Your animated dots */
+.dots {
+  width: 33.6px;
+  height: 30.9px;
+  --c: radial-gradient(farthest-side, #338f80 90%, #0000);
+  background: var(--c) 50% 0,
+              var(--c) 0 100%,
+              var(--c) 100% 100%;
+  background-size: 13.4px 13.4px;
+  background-repeat: no-repeat;
+  position: relative;
+  animation: dots-p4ro8i 1s infinite;
+}
+
+@keyframes dots-p4ro8i {
+  50%, 100% {
+    background-position: 100% 100%, 50% 0, 0 100%;
+  }
+}
