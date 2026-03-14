@@ -1,0 +1,199 @@
+/* Container & Global Font */
+.page-container {
+    padding: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+h2 {
+    color: #1a202c;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 700;
+    border-left: 5px solid #007bff;
+    padding-left: 15px;
+}
+
+/* Card Styling */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    border: 1px solid #e2e8f0;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #4a5568;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Selection Labels & Select Boxes */
+label {
+    display: block;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+select {
+    width: 100%;
+    max-width: 450px;
+    padding: 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 15px;
+    color: #2d3748;
+    cursor: pointer;
+    transition: all 0.2s;
+    appearance: none; /* Custom arrow look */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Form Layout (Grid) */
+/* --- Updated Form Layout --- */
+form {
+    display: flex; /* Switching to flex for more precise control */
+    gap: 15px;
+    align-items: center; /* This perfectly centers them vertically */
+    justify-content: flex-start;
+}
+
+input[type="text"] {
+    flex: 1;
+    max-width: 300px; /* Optional: limits input width */
+    height: 48px;     /* Explicit height */
+    padding: 0 15px;  /* Vertical padding removed to prevent stretching */
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box; /* Crucial for height matching */
+}
+
+/* --- Updated Add Branch Button --- */
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    height: 48px;     /* MUST match the input height exactly */
+    padding: 0 30px;  /* Horizontal padding only */
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Data Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    background-color: #f7fafc;
+    padding: 15px;
+    color: #718096;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #edf2f7;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #edf2f7;
+    color: #2d3748;
+    font-size: 14px;
+}
+
+tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Table Edit Button */
+td button {
+    background-color: #ebf8ff;
+    color: #3182ce;
+    padding: 6px 14px;
+    font-size: 13px;
+}
+
+td button:hover {
+    background-color: #3182ce;
+    color: white;
+}
+
+/* Modal Overlay & Transitions */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.modal-actions button:first-child {
+    background-color: #38a169;
+    color: white;
+}
+
+.modal-actions button:last-child {
+    background-color: #edf2f7;
+    color: #4a5568;
+}
