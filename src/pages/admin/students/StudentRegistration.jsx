@@ -6,6 +6,8 @@ import { getDepartments } from "../../../Services/DepartmentService";
 import { getCoursesByDept } from "../../../Services/CourseService";
 import { getBranchesByCourse } from "../../../Services/BranchService";
 import { getSections } from "../../../Services/SectionService";
+import toast from "react-hot-toast";
+
 
 const StudentRegistration = () => {
     const [step, setStep] = useState(1);
@@ -177,7 +179,7 @@ const StudentRegistration = () => {
     const handleSubmit = async () => {
         try {
             await addStudent(student, files);
-            alert("Student Registered Successfully 🎉");
+            toast.success("Student Registered Successfully!");
         } catch (err) {
             console.error(err);
             alert("Error registering student");

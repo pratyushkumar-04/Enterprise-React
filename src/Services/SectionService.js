@@ -9,5 +9,5 @@ export const getSections = async (branchId, semester) => {
   return res.data;
 };
 export const getAllSections = () => {
-  return instance.get("/sections");
+  return instance.get("/section");
 };

@@ -74,13 +74,27 @@ export const editStudent = async (studentId, studentData) => {
 };
 
 export const getStudentsBySection = (sectionId) => {
-  return instance.get(`/students/section/${sectionId}`);
+  return instance.get(`/student/section/${sectionId}`);
 };
 
 export const generateRollNumbers = (sectionId) => {
   return instance.patch(
-    `/students/sections/${sectionId}/generate-roll-numbers`
+    `/student/sections/${sectionId}/generate-roll-numbers`
   );
+};
+
+export const getStudentsWithoutRoll = (sectionId) => {
+  return instance.get(`/student/section/${sectionId}/unassigned`);
+};
+
+export const getMaxRollNumber = (sectionId) => {
+  return instance.get(`/student/section/${sectionId}/max-roll`);
+};
+
+export const assignRollNumber = (studentId, rollnum) => {
+  return instance.patch(`/student/${studentId}/roll-number`, {
+    rollnum,
+  });
 };
 
 

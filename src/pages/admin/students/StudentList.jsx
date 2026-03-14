@@ -267,6 +267,7 @@ const StudentList = () => {
             <th>Course</th>
             <th>Semester</th>
             <th>Section</th>
+            <th>RollNo.</th>
             <th>Phone</th>
             <th>Status</th>
             <th>Actions</th>
@@ -292,6 +293,7 @@ const StudentList = () => {
                 </td>
                 <td>{student.currentSemester}</td>
                 <td>{student.sectionname}</td>
+                <td>{student.rollnumber}</td>
                 <td>{student.phone}</td>
 
 

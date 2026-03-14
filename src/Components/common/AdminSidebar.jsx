@@ -24,6 +24,9 @@ const AdminSidebar = () => {
         <NavLink to="/admin/students/add">
           Add Student
         </NavLink>
+        <NavLink to="/admin/students/rollnumber">
+          Assign Roll Numbers
+        </NavLink>
 
         <NavLink to="/admin/faculty">
           Faculty
