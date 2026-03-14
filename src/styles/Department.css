@@ -1,0 +1,152 @@
+/* DepartmentMaster.css */
+.dept-master-page .page-container {
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.dept-master-page h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+    /* border-bottom: 3px solid #007bff; */
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.dept-master-page .card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    border: 1px solid #e9ecef;
+}
+
+.dept-master-page h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #495057;
+    font-size: 18px;
+}
+
+.dept-master-page form {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.dept-master-page input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.dept-master-page input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.dept-master-page button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dept-master-page button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+}
+
+.dept-master-page button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.dept-master-page table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.dept-master-page th {
+    text-align: left;
+    background-color: #f8f9fa;
+    padding: 15px;
+    color: #6c757d;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.dept-master-page td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+.dept-master-page tr:hover {
+    background-color: #fcfcfc;
+}
+
+.dept-master-page td button {
+    background-color: #f0f4f8;
+    color: #007bff;
+    font-size: 13px;
+}
+
+.dept-master-page td button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.dept-master-page .modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.dept-master-page .modal {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.dept-master-page .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.dept-master-page .modal-actions button:first-child {
+    background-color: #28a745;
+    color: white;
+}
+
+.dept-master-page .modal-actions button:last-child {
+    background-color: #6c757d;
+    color: white;
+}
