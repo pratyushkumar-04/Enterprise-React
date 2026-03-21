@@ -23,6 +23,8 @@ import Dashboard from "../pages/faculty/Dashboard";
 import DepartmentsPage from "../pages/admin/Masters/DepartmentsPage";
 import CourseMasterPage from "../pages/admin/Masters/CourseMasterPage";
 import BranchMasterPage from "../pages/admin/Masters/BranchMasterPage";
+import SectionMasterPage from "../pages/admin/Masters/SectionMasterPage";
+import SubjectMasterPage from "../pages/admin/Masters/SubjectMasterPage";
 
 const AppRoutes = () => {
   return (
@@ -60,6 +62,8 @@ const AppRoutes = () => {
         <Route path="departments" element={<DepartmentsPage/>}/>
         <Route path="courses" element={<CourseMasterPage/>}/>
         <Route path="branches" element={<BranchMasterPage/>}/>
+        <Route path="sections" element={<SectionMasterPage/>}/>
+        <Route path="subjects" element= {<SubjectMasterPage/>}/>
         <Route path="students" element={<StudentList />} />
         <Route path="students/add" element={<StudentRegistration />} />
         <Route path="students/rollnumber" element={<GenerateRollNumbers />} />

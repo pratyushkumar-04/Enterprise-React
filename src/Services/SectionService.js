@@ -11,3 +11,10 @@ export const getSections = async (branchId, semester) => {
 export const getAllSections = () => {
   return instance.get("/section");
 };
+export const addSection = async (req) => {
+  return instance.post("/section", req);
+};
+
+export const editSection = async (id, req) => {
+  return instance.put(`/section/${id}/edit`, req);
+};

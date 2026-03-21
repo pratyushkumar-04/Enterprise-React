@@ -1,0 +1,226 @@
+/* Subject Master Sandboxed Styles */
+.subject-master-page .page-container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.subject-master-page h2 {
+    color: #1a202c;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 700;
+    border-left: 5px solid #007bff;
+    padding-left: 15px;
+}
+
+/* Cascading Dropdowns Section */
+.subject-master-page select {
+    min-width: 200px;
+    padding: 12px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.subject-master-page select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Card Styling */
+.subject-master-page .card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    border: 1px solid #e2e8f0;
+    animation: subjectSlideIn 0.3s ease-out;
+}
+
+@keyframes subjectSlideIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.subject-master-page h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #4a5568;
+    font-size: 18px;
+}
+
+/* Add Subject Form - Multi-column Layout */
+.subject-master-page form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    align-items: end;
+}
+
+.subject-master-page input[type="text"],
+.subject-master-page input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.subject-master-page button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.subject-master-page button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Table Styling */
+.subject-master-page table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.subject-master-page th {
+    text-align: left;
+    background-color: #f7fafc;
+    padding: 15px;
+    color: #718096;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #edf2f7;
+}
+
+.subject-master-page td {
+    padding: 15px;
+    border-bottom: 1px solid #edf2f7;
+    font-size: 14px;
+    color: #2d3748;
+}
+
+/* Action Buttons in Table */
+.subject-master-page td button {
+    padding: 6px 12px;
+    margin-right: 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+/* Edit Button */
+.subject-master-page td button:first-child {
+    background-color: #ebf8ff;
+    color: #3182ce;
+}
+
+.subject-master-page td button:first-child:hover {
+    background-color: #3182ce;
+    color: white;
+}
+
+/* Status Toggle Button */
+.subject-master-page td button:last-child {
+    background-color: #fff5f5;
+    color: #e53e3e;
+}
+
+.subject-master-page td button:last-child:hover {
+    background-color: #e53e3e;
+    color: white;
+}
+
+/* Modal Styling */
+.subject-master-page .modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+}
+
+.subject-master-page .modal {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.subject-master-page .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.subject-master-page .modal-actions button:first-child {
+    background-color: #38a169;
+    color: white;
+}
+
+.subject-master-page .modal-actions button:last-child {
+    background-color: #edf2f7;
+    color: #4a5568;
+}
+/* Updated Form Alignment */
+.subject-master-page form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end; /* This aligns the button and selects to the bottom */
+}
+
+.subject-master-page form > * {
+    flex: 1;
+    min-width: 150px;
+}
+
+/* Specific fix for the Submit Button height to match inputs */
+.subject-master-page button[type="submit"] {
+    height: 45px; 
+    margin-bottom: 1px; /* Optical alignment tweak */
+}
+
+/* Confirmation Dialog Styles */
+.subject-master-page .confirm-modal {
+    max-width: 350px;
+    text-align: center;
+    padding: 40px;
+}
+
+.subject-master-page .confirm-modal h3 {
+    color: #e53e3e;
+    margin-bottom: 10px;
+}
+
+.subject-master-page .confirm-modal p {
+    color: #718096;
+    margin-bottom: 25px;
+}   

@@ -35,6 +35,12 @@ const AdminSidebar = () => {
         </NavLink>
         <NavLink to="/admin/branches">
         Branches
+        </NavLink >
+        <NavLink to="/admin/sections">
+        Sections
+        </NavLink>
+        <NavLink to="/admin/subjects">
+        Subjects
         </NavLink>
 
         <NavLink to="/admin/faculty">

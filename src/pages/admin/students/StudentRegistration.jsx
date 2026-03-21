@@ -188,6 +188,7 @@ const StudentRegistration = () => {
 
 
     return (
+        <div className="student-reg-page">
         <div className="registration-container">
             <h2>Student Registration</h2>
 
@@ -313,6 +314,7 @@ const StudentRegistration = () => {
                 </div>
 
             )}
+        </div>
         </div>
     );
 };

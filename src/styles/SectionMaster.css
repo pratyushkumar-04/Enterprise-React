@@ -1,0 +1,186 @@
+/* Section Master Sandboxed Styles */
+.section-master-page .page-container {
+    padding: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.section-master-page h2 {
+    color: #1a202c;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 700;
+    border-left: 5px solid #007bff;
+    padding-left: 15px;
+}
+
+/* Cascading Selectors Styling */
+.section-master-page select {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    color: #2d3748;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.section-master-page select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Card Container */
+.section-master-page .card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    border: 1px solid #e2e8f0;
+    animation: sectionFadeIn 0.3s ease-out;
+}
+
+@keyframes sectionFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-master-page h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #4a5568;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Form Layout */
+.section-master-page form {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.section-master-page input[type="text"] {
+    flex: 1;
+    max-width: 300px;
+    height: 46px;
+    padding: 0 15px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Table Styling */
+.section-master-page table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.section-master-page th {
+    text-align: left;
+    background-color: #f7fafc;
+    padding: 15px;
+    color: #718096;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #edf2f7;
+}
+
+.section-master-page td {
+    padding: 15px;
+    border-bottom: 1px solid #edf2f7;
+    color: #2d3748;
+    font-size: 14px;
+}
+
+/* Status Badges */
+.section-master-page td:nth-child(3) {
+    font-weight: 600;
+}
+
+/* Buttons */
+.section-master-page button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.section-master-page button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    height: 46px;
+}
+
+.section-master-page td button {
+    background-color: #ebf8ff;
+    color: #3182ce;
+    padding: 6px 12px;
+}
+
+.section-master-page td button:hover {
+    background-color: #3182ce;
+    color: white;
+}
+
+/* Modal Styling */
+.section-master-page .modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+}
+
+.section-master-page .modal {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+}
+
+.section-master-page .modal label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.section-master-page .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.section-master-page .modal-actions button:first-child {
+    background-color: #38a169;
+    color: white;
+}
+
+.section-master-page .modal-actions button:last-child {
+    background-color: #e2e8f0;
+    color: #4a5568;
+}
