@@ -67,6 +67,7 @@ export default function AddFaculty() {
     }
     if (step === 2) {
       if (!form.departmentId || !form.courseId || !form.branchId) return "Please complete all academic fields";
+      if (!form.qualification.trim()) return "Qualification is required";
     }
     return null;
   };
@@ -76,6 +77,7 @@ export default function AddFaculty() {
     try {
       await addFaculty(form, { image, cv });
       toast.success("Faculty added successfully!");
+      // Redirecting specifically to the admin path as requested
       setTimeout(() => navigate("/admin/faculty"), 1500);
     } catch (err) {
       toast.error("Error saving faculty data");
@@ -89,7 +91,7 @@ export default function AddFaculty() {
       <Toaster position="top-right" />
       
       <header className="form-header">
-        <h1>Faculty Registration</h1>
+        <h1>Staff Registration</h1>
         <div className="header-underline"></div>
       </header>
 
@@ -151,6 +153,10 @@ export default function AddFaculty() {
                 {data.branches.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
               </select>
             </div>
+            <div className="field-group full-width">
+              <label>Qualification</label>
+              <input value={form.qualification} onChange={e => setForm({...form, qualification: e.target.value})} placeholder="e.g. Ph.D. in Computer Science" />
+            </div>
           </div>
         )}
 
@@ -192,7 +198,8 @@ export default function AddFaculty() {
               <span className="badge">{form.designation.replace(/_/g, " ")}</span>
               <div className="detail-grid">
                 <div><label>Phone</label><p>{form.phone}</p></div>
-                <div><label>Dept</label><p>{data.depts.find(d => d.Id === form.departmentId)?.name || "N/A"}</p></div>
+                <div><label>Qualification</label><p>{form.qualification || "N/A"}</p></div>
+                <div style={{ gridColumn: 'span 2' }}><label>Dept</label><p>{data.depts.find(d => d.Id === form.departmentId)?.name || "N/A"}</p></div>
               </div>
               <div className="modal-actions">
                 <button className="secondary-btn" onClick={() => setShowConfirm(false)}>Edit</button>
