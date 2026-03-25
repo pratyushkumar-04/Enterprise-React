@@ -50,11 +50,8 @@ export const addStudent = async (studentData, files) => {
   if (files.tenth) formData.append("tenth", files.tenth);
   if (files.twelth) formData.append("twelth", files.twelth);
 
-  // Use the axios instance ('instance' in your case)
-  // CRITICAL: Do NOT manually set Content-Type: multipart/form-data here
-return instance.post("/student/add", formData);
+  return instance.post("/student/add", formData);
 
-    // return instance.post("/student/test")
 };
 
 export const getStudentImage = async (studentId) => {

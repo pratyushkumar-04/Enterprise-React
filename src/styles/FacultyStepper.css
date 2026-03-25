@@ -1,0 +1,113 @@
+/* ===== PAGE ===== */
+.stepper-page {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ===== TITLE ===== */
+.stepper-page h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ===== STEP INDICATOR ===== */
+.step-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.step-indicator span {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.step-indicator .active {
+  background: #4cafef;
+  color: white;
+}
+
+/* ===== FORM GRID ===== */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* Full width for textarea or big inputs */
+.form-grid textarea {
+  grid-column: span 2;
+}
+
+/* ===== INPUTS ===== */
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+  outline: none;
+  border-color: #4cafef;
+}
+
+/* ===== FILE INPUT ===== */
+.form-grid input[type="file"] {
+  padding: 5px;
+  border: none;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Back button */
+.actions button:first-child {
+  background: #ccc;
+}
+
+/* Next / Submit */
+.actions button:last-child {
+  background: #4cafef;
+  color: white;
+}
+
+/* Hover */
+.actions button:hover {
+  opacity: 0.9;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid textarea {
+    grid-column: span 1;
+  }
+}

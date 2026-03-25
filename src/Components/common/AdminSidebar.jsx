@@ -46,6 +46,9 @@ const AdminSidebar = () => {
         <NavLink to="/admin/faculty">
           Faculty
         </NavLink>
+        <NavLink to="/admin/faculty/add">
+          Add Faculty
+        </NavLink>
 
         <NavLink to="/admin/subjects">
           Subjects
