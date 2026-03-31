@@ -1,14 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import {
-  getAllStudents, updateStudentStatus, getStudentDocument,
-  getStudentImage, editStudent
+  getAllStudents,
+  updateStudentStatus,
+  getStudentDocument,
+  getStudentImage,
+  editStudent,
 } from "../../../Services/StudentService";
 import { getDepartments } from "../../../Services/DepartmentService";
 import { getCoursesByDept } from "../../../Services/CourseService";
 import { getBranchesByCourse } from "../../../Services/BranchService";
-import "../../../styles/StudentList.css"
-import Dashboard from "../Dashboard"
+import "../../../styles/StudentList.css";
+import Dashboard from "../Dashboard";
 import Loader from "../../../Components/common/Loader";
 
 const StudentList = () => {
@@ -38,7 +41,6 @@ const StudentList = () => {
   const [filterCourses, setFilterCourses] = useState([]);
   const [filterBranches, setFilterBranches] = useState([]);
 
-
   useEffect(() => {
     fetchStudents();
     loadDepartments();
@@ -46,9 +48,7 @@ const StudentList = () => {
 
   useEffect(() => {
     if (editStudentData && editStudentData.courseId && courses.length > 0) {
-      const selected = courses.find(
-        (c) => c.id == editStudentData.courseId
-      );
+      const selected = courses.find((c) => c.id == editStudentData.courseId);
       setSelectedCourseObj(selected);
     }
   }, [editStudentData, courses]);
@@ -70,11 +70,10 @@ const StudentList = () => {
     return Array.from({ length: totalSem }, (_, i) => i + 1);
   };
 
-
   const fetchStudents = async () => {
     try {
       const data = await getAllStudents();
-      console.log("API RESPONSE:", data);
+      // console.log("API RESPONSE:", data);
       setStudents(data);
       loadImages(data);
     } catch (err) {
@@ -152,7 +151,7 @@ const StudentList = () => {
       ...editStudentData,
       departmentId: deptId,
       courseId: "",
-      branchId: ""
+      branchId: "",
     });
 
     setCourses([]);
@@ -174,7 +173,7 @@ const StudentList = () => {
     setEditStudentData({
       ...editStudentData,
       courseId: courseId,
-      branchId: ""
+      branchId: "",
     });
 
     setBranches([]);
@@ -194,7 +193,7 @@ const StudentList = () => {
 
     setEditStudentData({
       ...editStudentData,
-      branchId: branchId
+      branchId: branchId,
     });
   };
 
@@ -202,13 +201,17 @@ const StudentList = () => {
     .filter((student) => {
       return (
         student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        student.admissionNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        student.admissionNumber
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
         student.email.toLowerCase().includes(searchTerm.toLowerCase())
       );
     })
     .filter((student) => {
       return (
-        (semesterFilter ? student.currentSemester === Number(semesterFilter) : true) &&
+        (semesterFilter
+          ? student.currentSemester === Number(semesterFilter)
+          : true) &&
         (filterDept ? student.departmentId === filterDept : true) &&
         (filterCourse ? student.courseId === filterCourse : true) &&
         (filterBranch ? student.branchId === filterBranch : true) &&
@@ -218,54 +221,58 @@ const StudentList = () => {
 
   const indexOfLastStudent = currentPage * studentsPerPage;
   const indexOfFirstStudent = indexOfLastStudent - studentsPerPage;
-  const currentStudents = filteredStudents.slice(indexOfFirstStudent, indexOfLastStudent);
+  const currentStudents = filteredStudents.slice(
+    indexOfFirstStudent,
+    indexOfLastStudent,
+  );
 
   const totalPages = Math.ceil(filteredStudents.length / studentsPerPage);
-
-  const handleSave = async () => {
-    try {
-      if (!editStudentData.name || !editStudentData.email) {
-        alert("Name and Email are required");
-        return;
-      }
-
-      // Construct clean payload (important for nested address safety)
-      const payload = {
-        name: editStudentData.name,
-        email: editStudentData.email,
-        phone: editStudentData.phone,
-        fatherName: editStudentData.fatherName,
-        motherName: editStudentData.motherName,
-        gender: editStudentData.gender,
-        dateOfBirth: editStudentData.dateOfBirth,
-        currentSemester: editStudentData.currentSemester,
-        departmentId: editStudentData.departmentId,
-        courseId: editStudentData.courseId,
-        branchId: editStudentData.branchId,
-        sectionId: editStudentData.sectionId,
-        address: {
-          addressLine1: editStudentData.address?.addressLine1 || "",
-          addressLine2: editStudentData.address?.addressLine2 || "",
-          city: editStudentData.address?.city || "",
-          state: editStudentData.address?.state || "",
-          pincode: editStudentData.address?.pincode || "",
-        },
-      };
-
-      await editStudent(editStudentData.id, payload);
-
-      setEditStudentData(null);
-      fetchStudents();
-
-      setToast("Student updated successfully");
-      setTimeout(() => setToast(null), 3000);
-
-    } catch (err) {
-      console.error("Update failed:", err);
-      alert("Update failed");
+const handleSave = async () => {
+  try {
+    if (!editStudentData.name || !editStudentData.email) {
+      alert("Name and Email are required");
+      return;
     }
-  };
 
+    setUpdating(true); // 🔥 START LOADER
+
+    const payload = {
+      name: editStudentData.name,
+      email: editStudentData.email,
+      phone: editStudentData.phone,
+      fatherName: editStudentData.fatherName,
+      motherName: editStudentData.motherName,
+      gender: editStudentData.gender,
+      dateOfBirth: editStudentData.dateOfBirth,
+      currentSemester: editStudentData.currentSemester,
+      departmentId: editStudentData.departmentId,
+      courseId: editStudentData.courseId,
+      branchId: editStudentData.branchId,
+      sectionId: editStudentData.sectionId,
+      address: {
+        addressLine1: editStudentData.address?.addressLine1 || "",
+        addressLine2: editStudentData.address?.addressLine2 || "",
+        city: editStudentData.address?.city || "",
+        state: editStudentData.address?.state || "",
+        pincode: editStudentData.address?.pincode || "",
+      },
+    };
+
+    await editStudent(editStudentData.id, payload);
+
+    setEditStudentData(null);
+    fetchStudents();
+
+    setToast("Student updated successfully");
+    setTimeout(() => setToast(null), 3000);
+
+  } catch (err) {
+    console.error("Update failed:", err);
+    alert("Update failed");
+  } finally {
+    setUpdating(false); // 🔥 STOP LOADER
+  }
+};
 
   if (loading) return <Loader />;
   if (error) return <p>{error}</p>;
@@ -291,15 +298,19 @@ const StudentList = () => {
             <div className="filter-bar">
               <select onChange={(e) => setSemesterFilter(e.target.value)}>
                 <option value="">All Semesters</option>
-                {[1, 2, 3, 4, 5, 6, 7, 8].map(sem => (
-                  <option key={sem} value={sem}>Semester {sem}</option>
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
+                  <option key={sem} value={sem}>
+                    Semester {sem}
+                  </option>
                 ))}
               </select>
 
               <select value={filterDept} onChange={handleFilterDeptChange}>
                 <option value="">All Departments</option>
-                {departments.map(d => (
-                  <option key={d.Id} value={d.Id}>{d.name}</option>
+                {departments.map((d) => (
+                  <option key={d.Id} value={d.Id}>
+                    {d.name}
+                  </option>
                 ))}
               </select>
 
@@ -309,8 +320,10 @@ const StudentList = () => {
                 disabled={!filterDept}
               >
                 <option value="">All Courses</option>
-                {filterCourses.map(c => (
-                  <option key={c.id} value={c.id}>{c.name}</option>
+                {filterCourses.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
                 ))}
               </select>
 
@@ -320,8 +333,10 @@ const StudentList = () => {
                 disabled={!filterCourse}
               >
                 <option value="">All Branches</option>
-                {filterBranches.map(b => (
-                  <option key={b.id} value={b.id}>{b.name}</option>
+                {filterBranches.map((b) => (
+                  <option key={b.id} value={b.id}>
+                    {b.name}
+                  </option>
                 ))}
               </select>
 
@@ -332,8 +347,6 @@ const StudentList = () => {
                 <option value="DROPPED">DROPPED</option>
                 <option value="PASSED">PASSED</option>
               </select>
-
-
 
               <select
                 value={studentsPerPage}
@@ -347,11 +360,9 @@ const StudentList = () => {
                 <option value={20}>20 per page</option>
                 <option value={50}>50 per page</option>
               </select>
-
             </div>
           </div>
         </div>
-
 
         <table className="student-table">
           <thead>
@@ -391,12 +402,12 @@ const StudentList = () => {
                   <td>{student.rollnumber}</td>
                   <td>{student.phone}</td>
 
-
                   <td>
-                    <span className={`status-badge ${student.status.toLowerCase()}`}>
+                    <span
+                      className={`status-badge ${student.status.toLowerCase()}`}
+                    >
                       {student.status}
                     </span>
-
                   </td>
 
                   <td className="action-cell">
@@ -405,10 +416,9 @@ const StudentList = () => {
                       onChange={(e) => {
                         setConfirmDialog({
                           studentId: student.id,
-                          newStatus: e.target.value
+                          newStatus: e.target.value,
                         });
                       }}
-
                       className="status-select"
                     >
                       <option value="ACTIVE">ACTIVE</option>
@@ -417,7 +427,10 @@ const StudentList = () => {
                       <option value="PASSED">PASSED</option>
                     </select>
 
-                    <button onClick={() => setSelectedStudent(student)} className="action-btn view-btn">
+                    <button
+                      onClick={() => setSelectedStudent(student)}
+                      className="action-btn view-btn"
+                    >
                       View
                     </button>
 
@@ -450,13 +463,9 @@ const StudentList = () => {
           ))}
         </div>
 
-
-
-
         {selectedStudent && (
           <div className="modal-overlay">
             <div className="modal-card">
-
               {/* 1. Image Section (Full width at top) */}
               <div className="card-image-container">
                 <img
@@ -476,14 +485,18 @@ const StudentList = () => {
               {/* 2. Content Section */}
               <div className="card-content">
                 <h2 className="student-name">{selectedStudent.name}</h2>
-                <p className="student-role">{selectedStudent.courseName} Student</p>
+                <p className="student-role">
+                  {selectedStudent.courseName} Student
+                </p>
 
                 <div className="divider"></div>
 
                 <div className="info-list">
                   <div className="info-item">
                     <span className="label">ID No.</span>
-                    <span className="value">{selectedStudent.admissionNumber}</span>
+                    <span className="value">
+                      {selectedStudent.admissionNumber}
+                    </span>
                   </div>
                   <div className="info-item">
                     <span className="label">Branch</span>
@@ -491,7 +504,9 @@ const StudentList = () => {
                   </div>
                   <div className="info-item">
                     <span className="label">Semester</span>
-                    <span className="value">{selectedStudent.currentSemester}</span>
+                    <span className="value">
+                      {selectedStudent.currentSemester}
+                    </span>
                   </div>
                   <div className="info-item">
                     <span className="label">Contact</span>
@@ -507,21 +522,27 @@ const StudentList = () => {
 
                   <div className="document-buttons">
                     <button
-                      onClick={() => handleViewDocument(selectedStudent.id, "adhaar")}
+                      onClick={() =>
+                        handleViewDocument(selectedStudent.id, "adhaar")
+                      }
                       className="doc-btn"
                     >
                       View Adhaar
                     </button>
 
                     <button
-                      onClick={() => handleViewDocument(selectedStudent.id, "tenth")}
+                      onClick={() =>
+                        handleViewDocument(selectedStudent.id, "tenth")
+                      }
                       className="doc-btn"
                     >
                       View 10th Marksheet
                     </button>
 
                     <button
-                      onClick={() => handleViewDocument(selectedStudent.id, "twelth")}
+                      onClick={() =>
+                        handleViewDocument(selectedStudent.id, "twelth")
+                      }
                       className="doc-btn"
                     >
                       View 12th Marksheet
@@ -530,11 +551,12 @@ const StudentList = () => {
                 </div>
 
                 {/* Optional Status Footer */}
-                <div className={`status-bar ${selectedStudent.status.toLowerCase()}`}>
+                <div
+                  className={`status-bar ${selectedStudent.status.toLowerCase()}`}
+                >
                   Currently {selectedStudent.status}
                 </div>
               </div>
-
             </div>
           </div>
         )}
@@ -542,7 +564,6 @@ const StudentList = () => {
         {editStudentData && (
           <div className="modal-overlay">
             <div className="edit-modal-card">
-
               <div className="edit-modal-header">
                 <h2>Edit Student</h2>
 
@@ -555,7 +576,6 @@ const StudentList = () => {
               </div>
 
               <div className="edit-form-grid">
-
                 {/* Basic Info */}
                 <input
                   type="text"
@@ -564,7 +584,7 @@ const StudentList = () => {
                   onChange={(e) =>
                     setEditStudentData({
                       ...editStudentData,
-                      name: e.target.value
+                      name: e.target.value,
                     })
                   }
                 />
@@ -576,7 +596,7 @@ const StudentList = () => {
                   onChange={(e) =>
                     setEditStudentData({
                       ...editStudentData,
-                      email: e.target.value
+                      email: e.target.value,
                     })
                   }
                 />
@@ -588,7 +608,7 @@ const StudentList = () => {
                   onChange={(e) =>
                     setEditStudentData({
                       ...editStudentData,
-                      phone: e.target.value
+                      phone: e.target.value,
                     })
                   }
                 />
@@ -599,7 +619,7 @@ const StudentList = () => {
                   onChange={(e) =>
                     setEditStudentData({
                       ...editStudentData,
-                      gender: e.target.value
+                      gender: e.target.value,
                     })
                   }
                 >
@@ -615,7 +635,7 @@ const StudentList = () => {
                   onChange={(e) =>
                     setEditStudentData({
                       ...editStudentData,
-                      dateOfBirth: e.target.value
+                      dateOfBirth: e.target.value,
                     })
                   }
                 />
@@ -626,7 +646,7 @@ const StudentList = () => {
                   onChange={(e) =>
                     setEditStudentData({
                       ...editStudentData,
-                      currentSemester: Number(e.target.value)
+                      currentSemester: Number(e.target.value),
                     })
                   }
                 >
@@ -649,7 +669,6 @@ const StudentList = () => {
                     <option key={d.Id} value={d.Id}>
                       {d.name}
                     </option>
-
                   ))}
                 </select>
 
@@ -693,8 +712,8 @@ const StudentList = () => {
                       ...editStudentData,
                       address: {
                         ...editStudentData.address,
-                        addressLine1: e.target.value
-                      }
+                        addressLine1: e.target.value,
+                      },
                     })
                   }
                 />
@@ -708,8 +727,8 @@ const StudentList = () => {
                       ...editStudentData,
                       address: {
                         ...editStudentData.address,
-                        city: e.target.value
-                      }
+                        city: e.target.value,
+                      },
                     })
                   }
                 />
@@ -723,8 +742,8 @@ const StudentList = () => {
                       ...editStudentData,
                       address: {
                         ...editStudentData.address,
-                        state: e.target.value
-                      }
+                        state: e.target.value,
+                      },
                     })
                   }
                 />
@@ -738,8 +757,8 @@ const StudentList = () => {
                       ...editStudentData,
                       address: {
                         ...editStudentData.address,
-                        pincode: e.target.value
-                      }
+                        pincode: e.target.value,
+                      },
                     })
                   }
                 />
@@ -749,17 +768,17 @@ const StudentList = () => {
                   <button className="save-btn" onClick={handleSave}>
                     Save Student
                   </button>
-
                 </div>
               </div>
             </div>
           </div>
         )}
 
+        {toast && <div className="toast">{toast}</div>}
 
-        {toast && (
-          <div className="toast">
-            {toast}
+        {updating && (
+          <div className="loader-overlay">
+            <Loader />
           </div>
         )}
 
@@ -785,16 +804,19 @@ const StudentList = () => {
                   onClick={async () => {
                     try {
                       setUpdating(true);
+
                       await updateStudentStatus(confirmDialog.studentId, {
-                        status: confirmDialog.newStatus
+                        status: confirmDialog.newStatus,
                       });
 
-                      setConfirmDialog(null);
                       setToast("Status updated successfully");
                       fetchStudents();
+
                       setTimeout(() => setToast(null), 3000);
-                    }
-                    finally {
+                    } catch (error) {
+                      console.error(error);
+                      setToast("Something went wrong");
+                    } finally {
                       setUpdating(false);
                       setConfirmDialog(null);
                     }
@@ -806,8 +828,6 @@ const StudentList = () => {
             </div>
           </div>
         )}
-
-
       </div>
     </div>
   );

@@ -27,6 +27,7 @@ import SectionMasterPage from "../pages/admin/Masters/SectionMasterPage";
 import SubjectMasterPage from "../pages/admin/Masters/SubjectMasterPage";
 import FacultyList from "../pages/admin/faculty/FacultyList";
 import AddFacultyPage from "../pages/admin/faculty/AddFacultyPage";
+import SubjectFacultySectionAssignmentPage from "../pages/admin/Assignment/SubjectAssignmentPage";
 
 const AppRoutes = () => {
   return (
@@ -72,6 +73,7 @@ const AppRoutes = () => {
 
         <Route path="faculty" element={<FacultyList/>}/>
         <Route path="faculty/add" element={<AddFacultyPage/>}/>
+        <Route path="faculty/assign" element={<SubjectFacultySectionAssignmentPage/>}/>
       </Route>
 
       {/* STUDENT */}

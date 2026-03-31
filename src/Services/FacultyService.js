@@ -10,6 +10,11 @@ export const getFacultiesByDepartment = async (id) => {
     return res.data;
 };
 
+export const getFacultiesByBranch = async (id) =>{
+  const res = await instance.get(`/faculty/branch/${id}`);
+  return res.data;
+}
+
 export const changeFacultyStatus = async (id, status) => {
     return await instance.patch(`/faculty/status/${id}`, {
          status: status 
