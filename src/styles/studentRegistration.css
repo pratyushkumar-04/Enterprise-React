@@ -1,70 +1,238 @@
-.registration-container {
-  width: 600px;
-  margin: auto;
-  padding: 30px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  animation: fadeIn 0.4s ease-in-out;
+/* Student Registration Sandboxed Styles */
+.student-reg-page .registration-container {
+    padding: 40px;
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    font-family: 'Inter', sans-serif;
+    border: 1px solid #e2e8f0;
 }
 
-input, select {
+.student-reg-page h2 {
+    text-align: center;
+    color: #1a202c;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* Progress Bar */
+.student-reg-page .progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #edf2f7;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+
+.student-reg-page .progress {
+    height: 100%;
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    transition: width 0.4s ease;
+}
+
+/* Grid Layout for Steps */
+.student-reg-page .form-step {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    animation: studentRegFadeIn 0.4s ease-out;
+}
+
+@keyframes studentRegFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Inputs & Selects */
+.student-reg-page input, 
+.student-reg-page select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s;
+    background: #f8fafc;
+    box-sizing: border-box;
+}
+
+.student-reg-page input:focus, 
+.student-reg-page select:focus {
+    outline: none;
+    border-color: #007bff;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Step 3: Document Uploads */
+.student-reg-page label {
+    grid-column: span 2;
+    font-weight: 600;
+    color: #4a5568;
+    margin-top: 10px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.student-reg-page input[type="file"] {
+    grid-column: span 2;
+    background: white;
+    border: 2px dashed #cbd5e0;
+    padding: 20px;
+    cursor: pointer;
+}
+
+/* Preview Elements */
+.student-reg-page .preview-img {
+    grid-column: span 2;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px 0;
+    border: 2px solid #edf2f7;
+}
+
+.student-reg-page .doc-preview {
+    grid-column: span 2;
+    width: 100%;
+    height: 200px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+/* Navigation Buttons */
+.student-reg-page .button-group {
+    grid-column: span 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.student-reg-page button {
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    font-size: 15px;
+}
+
+/* Next/Submit (Primary) */
+.student-reg-page .form-step > button,
+.student-reg-page .button-group button:last-child {
+    background: #007bff;
+    color: white;
+    flex: 1;
+}
+
+.student-reg-page button:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+}
+
+/* Previous (Secondary) */
+.student-reg-page .button-group button:first-child {
+    background: #edf2f7;
+    color: #4a5568;
+    flex: 1;
+}
+
+.student-reg-page .button-group button:first-child:hover {
+    background: #e2e8f0;
+}
+/* Overlay */
+.student-reg-page .preview-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-}
-
-button {
-  padding: 10px 20px;
-  border: none;
-  background: #4a6cf7;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #2f4ed8;
-}
-
-.progress-bar {
-  height: 6px;
-  background: #eee;
-  margin-bottom: 20px;
-  border-radius: 5px;
-}
-
-.progress {
   height: 100%;
-  background: #4a6cf7;
-  border-radius: 5px;
-  transition: width 0.3s ease;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.button-group {
+/* Modal Box */
+.student-reg-page .preview-box {
+  background: #fff;
+  padding: 25px;
+  width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: fadeInScale 0.25s ease;
+}
+
+/* Animation */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Image */
+.student-reg-page .preview-img-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 10px auto;
+  display: block;
+  border: 3px solid #eee;
+}
+
+/* Details */
+.student-reg-page .preview-details {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.student-reg-page .preview-details p {
+  margin: 6px 0;
   display: flex;
   justify-content: space-between;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-.preview-img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  margin-top: 10px;
-  border-radius: 8px;
+/* Buttons */
+.student-reg-page .preview-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
-.doc-preview {
-  width: 100%;
-  height: 200px;
-  margin-top: 10px;
-  border: 1px solid #ddd;
+.student-reg-page .preview-actions button {
+  padding: 10px 18px;
+  border: none;
   border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
 }
+
+.student-reg-page .preview-actions button:first-child {
+  background: #ddd;
+}
+
+.student-reg-page .preview-actions button:last-child {
+  background: #4CAF50;
+  color: white;
+}
+
+/* Hover */
+.student-reg-page .preview-actions button:hover {
+  opacity: 0.9;
+}
+

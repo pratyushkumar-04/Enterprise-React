@@ -50,11 +50,8 @@ export const addStudent = async (studentData, files) => {
   if (files.tenth) formData.append("tenth", files.tenth);
   if (files.twelth) formData.append("twelth", files.twelth);
 
-  // Use the axios instance ('instance' in your case)
-  // CRITICAL: Do NOT manually set Content-Type: multipart/form-data here
-return instance.post("/student/add", formData);
+  return instance.post("/student/add", formData);
 
-    // return instance.post("/student/test")
 };
 
 export const getStudentImage = async (studentId) => {
@@ -71,6 +68,30 @@ export const getStudentDocument = async (studentId, type) => {
 
 export const editStudent = async (studentId, studentData) => {
   return instance.put(`/student/edit/${studentId}`, studentData);
+};
+
+export const getStudentsBySection = (sectionId) => {
+  return instance.get(`/student/section/${sectionId}`);
+};
+
+export const generateRollNumbers = (sectionId) => {
+  return instance.patch(
+    `/student/sections/${sectionId}/generate-roll-numbers`
+  );
+};
+
+export const getStudentsWithoutRoll = (sectionId) => {
+  return instance.get(`/student/section/${sectionId}/unassigned`);
+};
+
+export const getMaxRollNumber = (sectionId) => {
+  return instance.get(`/student/section/${sectionId}/max-roll`);
+};
+
+export const assignRollNumber = (studentId, rollnum) => {
+  return instance.patch(`/student/${studentId}/roll-number`, {
+    rollnum,
+  });
 };
 
 

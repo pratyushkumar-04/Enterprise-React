@@ -18,6 +18,16 @@ import AdminRoutes from "./AdminRoutes";
 import StudentList from "../pages/admin/students/StudentList";
 import AddStudent from "../pages/admin/students/AddStudent";
 import StudentRegistration from "../pages/admin/students/StudentRegistration";
+import GenerateRollNumbers from "../pages/admin/students/GenerateRollNumbers";
+import Dashboard from "../pages/faculty/Dashboard";
+import DepartmentsPage from "../pages/admin/Masters/DepartmentsPage";
+import CourseMasterPage from "../pages/admin/Masters/CourseMasterPage";
+import BranchMasterPage from "../pages/admin/Masters/BranchMasterPage";
+import SectionMasterPage from "../pages/admin/Masters/SectionMasterPage";
+import SubjectMasterPage from "../pages/admin/Masters/SubjectMasterPage";
+import FacultyList from "../pages/admin/faculty/FacultyList";
+import AddFacultyPage from "../pages/admin/faculty/AddFacultyPage";
+import SubjectFacultySectionAssignmentPage from "../pages/admin/Assignment/SubjectAssignmentPage";
 
 const AppRoutes = () => {
   return (
@@ -47,15 +57,23 @@ const AppRoutes = () => {
         path="/admin"
         element={
           <ProtectedRoute>
-            <RoleRoute allowedRoles={["ADMIN"]}>
-              <AdminLayout />
-            </RoleRoute>
+            <AdminLayout />
           </ProtectedRoute>
         }
       >
-        <Route index element={<das />} />
+        <Route index element={<Dashboard />} />
+        <Route path="departments" element={<DepartmentsPage/>}/>
+        <Route path="courses" element={<CourseMasterPage/>}/>
+        <Route path="branches" element={<BranchMasterPage/>}/>
+        <Route path="sections" element={<SectionMasterPage/>}/>
+        <Route path="subjects" element= {<SubjectMasterPage/>}/>
         <Route path="students" element={<StudentList />} />
         <Route path="students/add" element={<StudentRegistration />} />
+        <Route path="students/rollnumber" element={<GenerateRollNumbers />} />
+
+        <Route path="faculty" element={<FacultyList/>}/>
+        <Route path="faculty/add" element={<AddFacultyPage/>}/>
+        <Route path="faculty/assign" element={<SubjectFacultySectionAssignmentPage/>}/>
       </Route>
 
       {/* STUDENT */}

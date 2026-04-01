@@ -1,0 +1,217 @@
+/* CourseMaster.css */
+.course-master-page .page-container {
+    padding: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.course-master-page h2 {
+    color: #1a202c;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 700;
+    border-left: 5px solid #007bff;
+    padding-left: 15px;
+}
+
+.course-master-page .card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    border: 1px solid #e2e8f0;
+}
+
+.course-master-page h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #4a5568;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.course-master-page label {
+    display: block;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.course-master-page select {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 15px;
+    color: #2d3748;
+    cursor: pointer;
+}
+
+.course-master-page form {
+   display: flex; /* Switching to flex for more precise control */
+    gap: 15px;
+    align-items: center; /* This perfectly centers them vertically */
+    justify-content: flex-start;
+}
+
+.course-master-page input[type="text"],
+.course-master-page input[type="number"] {
+    flex: 1;
+    max-width: 300px; /* Optional: limits input width */
+    height: 48px;     /* Explicit height */
+    padding: 0 15px;  /* Vertical padding removed to prevent stretching */
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.course-master-page button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.course-master-page button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    height: 48px;     /* MUST match the input height exactly */
+    padding: 0 30px;  /* Horizontal padding only */
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+
+.course-master-page table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.course-master-page th {
+    text-align: left;
+    background-color: #f7fafc;
+    padding: 15px;
+    color: #718096;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #edf2f7;
+}
+
+.course-master-page td {
+    padding: 15px;
+    border-bottom: 1px solid #edf2f7;
+    color: #2d3748;
+}
+/* Modal Overlay */
+.course-master-page .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.course-master-page .modal {
+  background-color: #fff;
+  padding: 30px 25px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Heading */
+.course-master-page .modal h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Modal Inputs */
+.course-master-page .modal input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.course-master-page .modal input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Modal Actions (Buttons) */
+.course-master-page .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.course-master-page .modal-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Save Button */
+.course-master-page .modal-actions button:first-child {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.course-master-page .modal-actions button:first-child:hover {
+  background-color: #0056b3;
+}
+
+/* Cancel Button */
+.course-master-page .modal-actions button:last-child {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.course-master-page .modal-actions button:last-child:hover {
+  background-color: #d9d9d9;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

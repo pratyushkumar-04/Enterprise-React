@@ -1,0 +1,212 @@
+/* Container & Wrapper */
+.roll-page.container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.roll-page h2 {
+    color: #1a202c;
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: 700;
+    border-left: 5px solid #007bff;
+    padding-left: 15px;
+}
+
+/* Mode Toggle Styling */
+.mode-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    background: #edf2f7;
+    padding: 5px;
+    border-radius: 12px;
+    width: fit-content;
+}
+
+.mode-btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    color: #4a5568;
+}
+
+.mode-btn.active {
+    background: white;
+    color: #007bff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Section Summary & Form */
+.section-summary {
+    background: #ebf8ff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border-left: 4px solid #3182ce;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-summary h5 {
+    margin: 0;
+    color: #2c5282;
+    font-size: 16px;
+}
+
+.student-count {
+    font-weight: 700;
+    color: #2b6cb0;
+}
+
+/* Table Section Styling */
+.table-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+.table-header {
+    padding: 20px;
+    border-bottom: 1px solid #edf2f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.load-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Avatar Styling */
+.student-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #edf2f7;
+}
+
+.avatar-placeholder {
+    width: 45px;
+    height: 45px;
+    background: #e2e8f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+/* Table Internals */
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.student-table th {
+    background: #f7fafc;
+    padding: 15px;
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #718096;
+    letter-spacing: 0.05em;
+}
+
+.student-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #edf2f7;
+    vertical-align: middle;
+}
+
+/* Assign & Generate Buttons */
+.assign-btn {
+    background: #38a169;
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.generate-btn-container {
+    padding: 25px;
+    text-align: center;
+    background: #f8fafc;
+}
+
+.generate-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+}
+
+.modal-box {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 400px;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header h3 {
+    margin: 0 0 15px 0;
+    color: #1a202c;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.modal-btn.confirm { background: #007bff; color: white; }
+.modal-btn.cancel { background: #e2e8f0; color: #4a5568; }

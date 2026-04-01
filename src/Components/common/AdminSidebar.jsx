@@ -24,13 +24,33 @@ const AdminSidebar = () => {
         <NavLink to="/admin/students/add">
           Add Student
         </NavLink>
+        <NavLink to="/admin/students/rollnumber">
+          Assign Roll Numbers
+        </NavLink>
+        <NavLink to="/admin/departments">
+        Departments
+        </NavLink>
+        <NavLink to="/admin/courses">
+        Courses
+        </NavLink>
+        <NavLink to="/admin/branches">
+        Branches
+        </NavLink >
+        <NavLink to="/admin/sections">
+        Sections
+        </NavLink>
+        <NavLink to="/admin/subjects">
+        Subjects
+        </NavLink>
 
         <NavLink to="/admin/faculty">
           Faculty
         </NavLink>
-
-        <NavLink to="/admin/subjects">
-          Subjects
+        <NavLink to="/admin/faculty/add">
+          Add Faculty
+        </NavLink>
+        <NavLink to="/admin/faculty/assign">
+          Assign Subjects
         </NavLink>
 
         <NavLink to="/admin/attendance">

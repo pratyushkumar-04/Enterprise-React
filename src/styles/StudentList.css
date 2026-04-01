@@ -73,7 +73,7 @@
 }
 
 .status-select {
-  width: 120px;
+  width: 90px;
   /* font-weight: 600; */
   text-align: center;
   border-radius: 6px;
@@ -274,6 +274,7 @@
 
 .filters select {
   padding: 8px;
+  padding-right: 30px;
   border-radius: 6px;
   border: 1px solid #ccc;
 }
@@ -304,23 +305,42 @@
   background: #f9fbff;
 }
 
+/* PAGINATION CONTAINER - FIXED POSITION */
 .pagination {
-  margin-top: 20px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   display: flex;
-  gap: 8px;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 10px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
 }
 
+/* BUTTONS */
 .pagination button {
-  padding: 6px 12px;
+  padding: 4px 10px; /* smaller */
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   background: #e5e7eb;
+  color: #333;
+  font-size: 13px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
+/* HOVER */
+.pagination button:hover {
+  background: #d1d5db;
+}
+
+/* ACTIVE PAGE - YOUR COLOR */
 .pagination .active-page {
-  background: #4f46e5;
+  background: #007bff;
   color: white;
+  font-weight: 500;
 }
 
 .danger-btn {
@@ -606,4 +626,29 @@ select:focus {
 .edit-modal-card::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,0.2);
   border-radius: 10px;
+}
+/* Container for the buttons and select in the table row */
+.student_list .action-cell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Aligns them to the left of the cell */
+  gap: 8px; /* Precise spacing between elements */
+  white-space: nowrap; /* Prevents wrapping to a second line */
+}
+
+/* Ensure the status select doesn't have a huge margin anymore */
+.student_list .status-select {
+  width: 130px;
+  margin-right: 0; 
+  height: 32px; /* Uniform height */
+  padding: 2px 8px;
+}
+
+/* Ensure buttons have uniform height and no extra margins */
+.student_list .action-btn {
+  margin-right: 0;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
