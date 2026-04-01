@@ -26,6 +26,7 @@ const Navbar = () => {
   };
 
   return (
+    <div className="navbarclass">
     <header className="navbar">
   {/* LEFT - LOGO */}
   <div className="nav-left">
@@ -84,6 +85,7 @@ const Navbar = () => {
 )}
   </div>
 </header>
+</div>
   );
 };
 

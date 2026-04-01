@@ -12,14 +12,13 @@ import ProtectedRoute from "../Components/common/ProtectedRoute";
 import RoleRoute from "../Components/common/RoleRoute";
 
 import AdminDashboard from "../pages/admin/Dashboard";
-import FacultyDashboard from "../pages/faculty/Dashboard";
+import FacultyDashboard from "../pages/faculty/FacultyDashboard";
 import StudentDashboard from "../pages/student/Dashboard";
 import AdminRoutes from "./AdminRoutes";
 import StudentList from "../pages/admin/students/StudentList";
-import AddStudent from "../pages/admin/students/AddStudent";
 import StudentRegistration from "../pages/admin/students/StudentRegistration";
 import GenerateRollNumbers from "../pages/admin/students/GenerateRollNumbers";
-import Dashboard from "../pages/faculty/Dashboard";
+import Dashboard from "../pages/admin/Dashboard";
 import DepartmentsPage from "../pages/admin/Masters/DepartmentsPage";
 import CourseMasterPage from "../pages/admin/Masters/CourseMasterPage";
 import BranchMasterPage from "../pages/admin/Masters/BranchMasterPage";
@@ -52,7 +51,7 @@ const AppRoutes = () => {
       </Route> */}
 
 
-      {/* Faculty */}
+      {/* Admin */}
       <Route
         path="/admin"
         element={
@@ -74,6 +73,19 @@ const AppRoutes = () => {
         <Route path="faculty" element={<FacultyList/>}/>
         <Route path="faculty/add" element={<AddFacultyPage/>}/>
         <Route path="faculty/assign" element={<SubjectFacultySectionAssignmentPage/>}/>
+      </Route>
+
+      <Route
+        path="/faculty"
+        element={
+          <ProtectedRoute>
+            <RoleRoute allowedRoles={["STUDENT"]}>
+              <StudentLayout />
+            </RoleRoute>
+          </ProtectedRoute>
+        }
+      >
+         <Route index element={<FacultyDashboard />} />
       </Route>
 
       {/* STUDENT */}
