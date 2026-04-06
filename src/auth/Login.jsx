@@ -39,9 +39,11 @@ const Login = () => {
 
       const decoded = jwtDecode(token);
       const role = decoded.role;
+      const id = decoded.id;
 
       localStorage.setItem("role", role);
       localStorage.setItem("username", decoded.sub);
+      localStorage.setItem("id",id);
 
       if (role === "ADMIN") {
         navigate("/admin", { replace: true });
