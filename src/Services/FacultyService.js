@@ -1,5 +1,7 @@
 import instance from "./axios";
 
+const facultyId = localStorage.getItem("id");
+
 export const getFaculties = async () => {
     const res = await instance.get("/faculty");
     return res.data;
@@ -49,4 +51,11 @@ export const addFaculty = async (facultydata, files) => {
   if (files.cv) formData.append("cv", files.cv);
 
   return instance.post("/faculty", formData);
+};
+export const getFacultyProfile = async () =>{
+  const res = await instance.get(`/faculty/${facultyId}`);
+  return res.data;
+}
+export const changePassword = (data) => {
+  return instance.post("/faculty/change-password", data);
 };

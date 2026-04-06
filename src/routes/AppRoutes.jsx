@@ -12,14 +12,13 @@ import ProtectedRoute from "../Components/common/ProtectedRoute";
 import RoleRoute from "../Components/common/RoleRoute";
 
 import AdminDashboard from "../pages/admin/Dashboard";
-import FacultyDashboard from "../pages/faculty/Dashboard";
+import FacultyDashboard from "../pages/faculty/FacultyDashboard";
 import StudentDashboard from "../pages/student/Dashboard";
 import AdminRoutes from "./AdminRoutes";
 import StudentList from "../pages/admin/students/StudentList";
-import AddStudent from "../pages/admin/students/AddStudent";
 import StudentRegistration from "../pages/admin/students/StudentRegistration";
 import GenerateRollNumbers from "../pages/admin/students/GenerateRollNumbers";
-import Dashboard from "../pages/faculty/Dashboard";
+import Dashboard from "../pages/admin/Dashboard";
 import DepartmentsPage from "../pages/admin/Masters/DepartmentsPage";
 import CourseMasterPage from "../pages/admin/Masters/CourseMasterPage";
 import BranchMasterPage from "../pages/admin/Masters/BranchMasterPage";
@@ -28,6 +27,7 @@ import SubjectMasterPage from "../pages/admin/Masters/SubjectMasterPage";
 import FacultyList from "../pages/admin/faculty/FacultyList";
 import AddFacultyPage from "../pages/admin/faculty/AddFacultyPage";
 import SubjectFacultySectionAssignmentPage from "../pages/admin/Assignment/SubjectAssignmentPage";
+import FacultyProfile from "../pages/faculty/FacultyProfile";
 
 const AppRoutes = () => {
   return (
@@ -52,7 +52,7 @@ const AppRoutes = () => {
       </Route> */}
 
 
-      {/* Faculty */}
+      {/* Admin */}
       <Route
         path="/admin"
         element={
@@ -74,6 +74,22 @@ const AppRoutes = () => {
         <Route path="faculty" element={<FacultyList/>}/>
         <Route path="faculty/add" element={<AddFacultyPage/>}/>
         <Route path="faculty/assign" element={<SubjectFacultySectionAssignmentPage/>}/>
+      </Route>
+
+        // Faculty
+      <Route
+        path="/faculty"
+        element={
+          <ProtectedRoute>
+            <RoleRoute allowedRoles={["FACULTY"]}>
+              <FacultyLayout />
+            </RoleRoute>
+          </ProtectedRoute>
+        }
+        
+      >
+         <Route index element={<FacultyDashboard />} />
+         <Route path="profile" element = {<FacultyProfile/>}/>
       </Route>
 
       {/* STUDENT */}

@@ -24,3 +24,9 @@ export const deleteAssignment = async (id) => {
   const res = await instance.delete(`/faculty-assignment/${id}`);
   return res.data;
 };
+
+// get Assignments by FacultyId
+export const getAssignmentsbyFaculty = async (facultyId) =>{
+  const res = await instance.get(`/faculty-assignment/faculty/${facultyId}`)
+  return res.data;
+}

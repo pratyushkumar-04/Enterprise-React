@@ -1,23 +1,23 @@
 /* NAVBAR */
 /* NAVBAR */
-.navbar {
+.navbarclass .navbar {
   height: 70px;
   width: 100%;
   background: linear-gradient(90deg, #007bff, #3399ff);
   display: flex;
   align-items: center;
-  position: relative; /* IMPORTANT */
+  justify-content: space-between; /* Space elements out naturally */
+  padding: 0 20px;
+  position: relative;
+  box-sizing: border-box; /* Crucial for preventing overflow */
 }
 
 /* CENTER - TITLE (FIXED) */
-.nav-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none; /* prevents blocking clicks */
+.navbarclass .nav-center {
+  position: static; /* Remove absolute positioning */
+  transform: none;  /* Remove translate */
+  flex: 1;          /* Take up middle space */
+  text-align: center;
 }
 
 .profile-trigger{
@@ -35,17 +35,16 @@ font-size: 20px;
 .nav-left {
   /* padding-top: 25px; */
   /* width: 25%; */
-  padding-left: 25px;
+  /* padding-left: 5px; */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
 }
 
-.logo {
-  padding-top: 25px;
-  height: 115px;
-  max-width: 100%;
+.navbarclass .logo {
+  height: 95px; /* Reduced from 115px to fit 70px bar */
+  width: auto;
   object-fit: contain;
   cursor: pointer;
 }
@@ -67,7 +66,7 @@ font-size: 20px;
 /* RIGHT */
 .nav-right {
   padding-right: 30px;
-  margin-left: auto;
+  margin-left: 100px;
   display: flex;
   align-items: center;
   gap: 20px;

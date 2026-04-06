@@ -1,0 +1,383 @@
+.faculty-profile-page {
+  padding: 24px;
+  background: #f4f7fb;
+  min-height: calc(100vh - 70px);
+}
+
+.faculty-profile-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 30px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.faculty-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.faculty-profile-image-wrapper {
+  flex-shrink: 0;
+}
+
+.faculty-profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #dbeafe;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+}
+
+.faculty-profile-main {
+  flex: 1;
+  min-width: 250px;
+}
+
+.faculty-profile-main h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.faculty-designation {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  color: #475569;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.faculty-meta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.faculty-code-badge,
+.faculty-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.faculty-code-badge {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.faculty-status-badge.active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.faculty-status-badge.inactive {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* .view-cv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s ease;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+} */
+
+/* .view-cv-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(37, 99, 235, 0.35);
+} */
+
+.faculty-info-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.info-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition: 0.2s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-2px);
+  background: #f1f5f9;
+}
+
+.info-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #dbeafe;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.info-box label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.info-box span {
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.faculty-profile-loading,
+.faculty-profile-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  font-size: 18px;
+  color: #475569;
+  background: #f4f7fb;
+}
+
+@media (max-width: 768px) {
+  .faculty-profile-page {
+    padding: 16px;
+  }
+
+  .faculty-profile-card {
+    padding: 20px;
+  }
+
+  .faculty-profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .faculty-profile-main h1 {
+    font-size: 24px;
+  }
+
+  .faculty-profile-actions {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .view-cv-btn {
+    width: 100%;
+  }
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  animation: fadeInScale 0.25s ease;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-box h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.modal-box input {
+  padding: 10px 12px;
+  border: 1px solid #cbd5f5;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.modal-box input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.modal-actions button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Cancel button */
+.modal-actions button:first-child {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+/* Submit button */
+.modal-actions button:last-child {
+  background: #2563eb;
+  color: white;
+}
+
+.modal-actions button:last-child:hover {
+  background: #1d4ed8;
+}
+
+.modal-actions button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+.change-password-btn {
+  margin-left: 10px;
+  padding: 8px 14px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.change-password-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.change-password-btn:active {
+  transform: scale(0.98);
+}
+.faculty-profile-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Base button style */
+.action-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+}
+
+/* View CV */
+.action-btn.secondary {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.action-btn.secondary:hover {
+  background: #cbd5f5;
+}
+
+/* Change Password */
+.action-btn.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.action-btn.primary:hover {
+  background: #1d4ed8;
+}
+.password-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-field input {
+  width: 100%;
+  padding: 10px 42px 10px 12px;
+  border: 1px solid #cbd5f5;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.password-field input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.password-field span {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+}
+
+.password-field span:hover {
+  color: #2563eb;
+}
