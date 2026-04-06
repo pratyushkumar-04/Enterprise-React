@@ -8,6 +8,7 @@ const FacultySidebar = () => {
     { name: "Students", path: "/faculty/students" },
     { name: "Assignments", path: "/faculty/assignments" },
     { name: "Profile", path: "/faculty/profile" },
+    { name : "Timetable",path:"/faculty/timetable"},
   ];
 
   return (

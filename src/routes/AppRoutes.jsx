@@ -28,6 +28,8 @@ import FacultyList from "../pages/admin/faculty/FacultyList";
 import AddFacultyPage from "../pages/admin/faculty/AddFacultyPage";
 import SubjectFacultySectionAssignmentPage from "../pages/admin/Assignment/SubjectAssignmentPage";
 import FacultyProfile from "../pages/faculty/FacultyProfile";
+import FacultyAssignments from "../pages/faculty/FacultyAssignments";
+import FacultyTimetable from "../pages/faculty/FacultyTimetable";
 
 const AppRoutes = () => {
   return (
@@ -90,6 +92,8 @@ const AppRoutes = () => {
       >
          <Route index element={<FacultyDashboard />} />
          <Route path="profile" element = {<FacultyProfile/>}/>
+         <Route path="assignments" element = {<FacultyAssignments/>}/>
+         <Route path="timetable" element = {<FacultyTimetable/>}/>
       </Route>
 
       {/* STUDENT */}
