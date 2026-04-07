@@ -28,6 +28,10 @@ import FacultyList from "../pages/admin/faculty/FacultyList";
 import AddFacultyPage from "../pages/admin/faculty/AddFacultyPage";
 import SubjectFacultySectionAssignmentPage from "../pages/admin/Assignment/SubjectAssignmentPage";
 import FacultyProfile from "../pages/faculty/FacultyProfile";
+import FacultyAssignments from "../pages/faculty/FacultyAssignments";
+import FacultyTimetable from "../pages/faculty/FacultyTimetable";
+import { CreateTimetable } from "../pages/admin/Timetable/CreateTimetable";
+import AdminSectionTimetable from "../pages/admin/Timetable/AdminSectionTimetable";
 
 const AppRoutes = () => {
   return (
@@ -74,6 +78,8 @@ const AppRoutes = () => {
         <Route path="faculty" element={<FacultyList/>}/>
         <Route path="faculty/add" element={<AddFacultyPage/>}/>
         <Route path="faculty/assign" element={<SubjectFacultySectionAssignmentPage/>}/>
+        <Route path="timetable/create" element={<CreateTimetable/>}/>
+        <Route path="timetable/section" element = {<AdminSectionTimetable/>}/>
       </Route>
 
         // Faculty
@@ -90,6 +96,8 @@ const AppRoutes = () => {
       >
          <Route index element={<FacultyDashboard />} />
          <Route path="profile" element = {<FacultyProfile/>}/>
+         <Route path="assignments" element = {<FacultyAssignments/>}/>
+         <Route path="timetable" element = {<FacultyTimetable/>}/>
       </Route>
 
       {/* STUDENT */}
