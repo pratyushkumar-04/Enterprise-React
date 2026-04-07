@@ -1,0 +1,172 @@
+.page-container {
+  padding: 24px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+.filter-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 16px;
+  margin-bottom: 28px; /* 🔥 THIS adds space before timetable */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px; /* 🔥 spacing between fields */
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #475569;
+}
+
+.field select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  transition: all 0.2s ease;
+}
+
+.field select:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
+}
+.page-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.page-header p {
+  color: #64748b;
+  margin-top: 4px;
+}
+.timetable-card {
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.timetable-card::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1, #3b82f6);
+  border-radius: 10px 10px 0 0;
+  margin: -24px -24px 16px -24px;
+}
+.timetable-table td {
+  border: 1px solid #e2e8f0;
+  height: 95px;
+  padding: 8px;
+  transition: background 0.2s ease;
+}
+
+.timetable-table td:hover {
+  background: #f1f5f9;
+}
+.slot-card {
+  background: white;
+  border-left: 4px solid #6366f1;
+  padding: 8px;
+  border-radius: 8px;
+  height: 100%;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.slot-card:hover {
+  transform: translateY(-2px);
+}
+
+.slot-subject {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.slot-meta {
+  font-size: 12px;
+  color: #64748b;
+}
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #94a3b8;
+  font-size: 16px;
+}
+.timetable-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.timetable-card {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.download-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.download-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.timetable-wrapper {
+  background: white;
+  padding: 10px;
+}
+.slot-meta {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.slot-meta .faculty {
+  font-weight: 500;
+}
+
+.slot-meta .room {
+  margin-top: 2px;
+  font-size: 11px;
+  opacity: 0.9;
+}
+.timetable-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.timetable-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}

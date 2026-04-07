@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { getFacultyTimetable } from "../../Services/TimetableService";
 import "../../styles/FacultyTimetable.css";
 
 const FacultyTimetable = () => {
-  const facultyName = "Pramod Jha";
-  const academicYear = "2025-26";
-  const totalSubjects = 3;
+  const [timetable, setTimetable] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const days = [
+    "MONDAY",
+    "TUESDAY",
+    "WEDNESDAY",
+    "THURSDAY",
+    "FRIDAY",
+    "SATURDAY"
+  ];
+  const facultyId = localStorage.getItem("id");
 
   const periods = [
     { id: 1, time: "09:00 - 10:00" },
@@ -16,72 +26,52 @@ const FacultyTimetable = () => {
     { id: 7, time: "04:00 - 05:00" }
   ];
 
-  const days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ];
+  useEffect(() => {
+    loadTimetable();
+  }, []);
 
-  const timetable = [
-    {
-      day: "Monday",
-      period: 1,
-      subject: "DSA",
-      section: "A",
-      room: "C-204"
-    },
-    {
-      day: "Monday",
-      period: 4,
-      subject: "DBMS",
-      section: "B",
-      room: "C-105"
-    },
-    {
-      day: "Tuesday",
-      period: 2,
-      subject: "DSA",
-      section: "A",
-      room: "C-204"
-    },
-    {
-      day: "Wednesday",
-      period: 3,
-      subject: "OOPs",
-      section: "A",
-      room: "Lab-2"
-    },
-    {
-      day: "Thursday",
-      period: 5,
-      subject: "DBMS",
-      section: "B",
-      room: "C-105"
-    },
-    {
-      day: "Friday",
-      period: 1,
-      subject: "DSA",
-      section: "A",
-      room: "C-204"
-    },
-    {
-      day: "Saturday",
-      period: 2,
-      subject: "Mentoring",
-      section: "-",
-      room: "Faculty Room"
+  const loadTimetable = async () => {
+    try {
+      const response = await getFacultyTimetable(facultyId);
+      setTimetable(response.data || []);
+    } catch (error) {
+      console.error("Failed to load faculty timetable", error);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
+
+  const academicYear = useMemo(() => {
+    return timetable.length ? timetable[0].academicYear : "-";
+  }, [timetable]);
+
+  const totalSubjects = useMemo(() => {
+    return new Set(timetable.map((item) => item.subjectId)).size;
+  }, [timetable]);
+
+  const facultyName = useMemo(() => {
+    return timetable.length ? timetable[0].facultyName : "Faculty";
+  }, [timetable]);
 
   const getCellData = (day, period) => {
     return timetable.find(
-      (item) => item.day === day && item.period === period
+      (item) =>
+        item.dayOfWeek === day &&
+        Number(item.periodNumber) === Number(period)
     );
   };
+
+  const formatDay = (day) => {
+    return day.charAt(0) + day.slice(1).toLowerCase();
+  };
+
+  if (loading) {
+    return (
+      <div className="faculty-timetable-loading">
+        Loading timetable...
+      </div>
+    );
+  }
 
   return (
     <div className="faculty-timetable-page">
@@ -101,6 +91,11 @@ const FacultyTimetable = () => {
             <span className="label">Assigned Subjects</span>
             <span className="value">{totalSubjects}</span>
           </div>
+
+          <div className="summary-item">
+            <span className="label">Total Classes</span>
+            <span className="value">{timetable.length}</span>
+          </div>
         </div>
       </div>
 
@@ -111,7 +106,7 @@ const FacultyTimetable = () => {
               <tr>
                 <th className="time-column">Time</th>
                 {days.map((day) => (
-                  <th key={day}>{day}</th>
+                  <th key={day}>{formatDay(day)}</th>
                 ))}
               </tr>
             </thead>
@@ -127,22 +122,27 @@ const FacultyTimetable = () => {
                   </td>
 
                   {days.map((day) => {
-                    const cell = getCellData(day, period.id);
+                    const slot = getCellData(day, period.id);
 
                     return (
                       <td key={`${day}-${period.id}`}>
-                        {cell ? (
+                        {slot ? (
                           <div className="timetable-slot">
                             <div className="slot-subject">
-                              {cell.subject}
+                              {slot.subjectName}
                             </div>
 
                             <div className="slot-section">
-                              Section {cell.section}
+                              {slot.section} • Sem {slot.semester}
                             </div>
 
                             <div className="slot-room">
-                              {cell.room}
+                              {slot.roomNumber || "No Room"}
+                            </div>
+
+                            <div className="slot-time">
+                              {slot.startTime?.slice(0, 5)} -{" "}
+                              {slot.endTime?.slice(0, 5)}
                             </div>
                           </div>
                         ) : (
