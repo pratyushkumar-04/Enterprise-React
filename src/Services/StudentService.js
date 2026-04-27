@@ -14,24 +14,6 @@ export const getAllStudents = async () => {
 export const updateStudentStatus = async (id, status) => {
   return await axios.patch(`/student/status/${id}`, status);
 };
-
-// export const addStudent = async (studentData, files) => {
-//   const formData = new FormData();
-
-//   formData.append(
-//     "student",
-//     new Blob([JSON.stringify(studentData)], {
-//       type: "application/json",
-//     })
-//   );
-
-//   if (files.image) formData.append("image", files.image);
-//   if (files.adhaar) formData.append("adhaar", files.adhaar);
-//   if (files.tenth) formData.append("tenth", files.tenth);
-//   if (files.twelth) formData.append("twelth", files.twelth);
-
-//   return axios.post("/student", formData);
-// };
 export const addStudent = async (studentData, files) => {
   const formData = new FormData();
 
@@ -94,7 +76,6 @@ export const assignRollNumber = (studentId, rollnum) => {
   });
 };
 
-
-
-
-
+export const getStudentById = (studentId) =>{
+  return instance.get(`/student/${studentId}`);
+}

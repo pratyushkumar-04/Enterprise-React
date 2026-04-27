@@ -7,7 +7,6 @@ import AdminLayout from "../layouts/AdminLayout";
 import FacultyLayout from "../layouts/FacultyLayout";
 import StudentLayout from "../layouts/StudentLayout";
 
-
 import ProtectedRoute from "../Components/common/ProtectedRoute";
 import RoleRoute from "../Components/common/RoleRoute";
 
@@ -32,15 +31,14 @@ import FacultyAssignments from "../pages/faculty/FacultyAssignments";
 import FacultyTimetable from "../pages/faculty/FacultyTimetable";
 import { CreateTimetable } from "../pages/admin/Timetable/CreateTimetable";
 import AdminSectionTimetable from "../pages/admin/Timetable/AdminSectionTimetable";
+import FacultyAttendancePage from "../pages/faculty/FacultyAttendancePage";
 
 const AppRoutes = () => {
   return (
     <Routes>
-
       {/* PUBLIC */}
       <Route path="/login" element={<Login />} />
       <Route path="/unauthorized" element={<Unauthorized />} />
-
       {/* ADMIN */}
       {/* <Route
         path="/admin/*"
@@ -54,8 +52,6 @@ const AppRoutes = () => {
       >
         <Route index element={<AdminDashboard />} />
       </Route> */}
-
-
       {/* Admin */}
       <Route
         path="/admin"
@@ -66,23 +62,25 @@ const AppRoutes = () => {
         }
       >
         <Route index element={<Dashboard />} />
-        <Route path="departments" element={<DepartmentsPage/>}/>
-        <Route path="courses" element={<CourseMasterPage/>}/>
-        <Route path="branches" element={<BranchMasterPage/>}/>
-        <Route path="sections" element={<SectionMasterPage/>}/>
-        <Route path="subjects" element= {<SubjectMasterPage/>}/>
+        <Route path="departments" element={<DepartmentsPage />} />
+        <Route path="courses" element={<CourseMasterPage />} />
+        <Route path="branches" element={<BranchMasterPage />} />
+        <Route path="sections" element={<SectionMasterPage />} />
+        <Route path="subjects" element={<SubjectMasterPage />} />
         <Route path="students" element={<StudentList />} />
         <Route path="students/add" element={<StudentRegistration />} />
         <Route path="students/rollnumber" element={<GenerateRollNumbers />} />
 
-        <Route path="faculty" element={<FacultyList/>}/>
-        <Route path="faculty/add" element={<AddFacultyPage/>}/>
-        <Route path="faculty/assign" element={<SubjectFacultySectionAssignmentPage/>}/>
-        <Route path="timetable/create" element={<CreateTimetable/>}/>
-        <Route path="timetable/section" element = {<AdminSectionTimetable/>}/>
+        <Route path="faculty" element={<FacultyList />} />
+        <Route path="faculty/add" element={<AddFacultyPage />} />
+        <Route
+          path="faculty/assign"
+          element={<SubjectFacultySectionAssignmentPage />}
+        />
+        <Route path="timetable/create" element={<CreateTimetable />} />
+        <Route path="timetable/section" element={<AdminSectionTimetable />} />
       </Route>
-
-        // Faculty
+      // Faculty
       <Route
         path="/faculty"
         element={
@@ -92,14 +90,14 @@ const AppRoutes = () => {
             </RoleRoute>
           </ProtectedRoute>
         }
-        
       >
-         <Route index element={<FacultyDashboard />} />
-         <Route path="profile" element = {<FacultyProfile/>}/>
-         <Route path="assignments" element = {<FacultyAssignments/>}/>
-         <Route path="timetable" element = {<FacultyTimetable/>}/>
+        <Route index element={<FacultyDashboard />} />
+        <Route path="profile" element={<FacultyProfile />} />
+        <Route path="assignments" element={<FacultyAssignments />} />
+        <Route path="timetable" element={<FacultyTimetable />} />
+        <Route path="attendance" element={<FacultyAttendancePage />} />
+        <Route path="attendance/:sessionId" element={<FacultyAttendancePage />} />
       </Route>
-
       {/* STUDENT */}
       <Route
         path="/student"
@@ -113,10 +111,8 @@ const AppRoutes = () => {
       >
         <Route index element={<StudentDashboard />} />
       </Route>
-
       {/*  FALLBACK */}
       <Route path="*" element={<Navigate to="/login" />} />
-
     </Routes>
   );
 };

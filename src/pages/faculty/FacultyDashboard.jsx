@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   getFacultyProfile,
   getFacultyImage,
 } from "../../Services/FacultyService";
 import { getAssignmentsbyFaculty } from "../../Services/SubjectAssignmentService";
+
 import "../../styles/FacultyDashboard.css";
+import {
+  createAttendanceSession,
+  getCurrentClass,
+} from "../../Services/AttendanceService";
 
 const FacultyDashboard = () => {
   const [profile, setProfile] = useState(null);
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [imageUrl, setImageUrl] = useState(null);
+  const [currentClass, setCurrentClass] = useState(null);
+
+  const facultyId = localStorage.getItem("id");
 
   useEffect(() => {
     loadDashboardData();
+  }, []);
+
+  useEffect(() => {
+    fetchCurrentClass();
   }, []);
 
   const loadDashboardData = async () => {
@@ -36,6 +49,48 @@ const FacultyDashboard = () => {
       setLoading(false);
     }
   };
+
+  const navigate = useNavigate();
+
+  const handleAttendanceClick = async () => {
+    try {
+      let sessionId = currentClass.sessionId;
+
+      if (!sessionId) {
+        const data = await createAttendanceSession({
+          timetableEntryId: currentClass.timetableEntryId,
+          date: new Date().toISOString().split("T")[0],
+          lectureNum: currentClass.lectureNum,
+        });
+
+        console.log(data);
+        
+
+        sessionId = data.Id;
+      }
+
+      navigate(`/faculty/attendance/${sessionId}`);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const fetchCurrentClass = async () => {
+    try {
+      const data = await getCurrentClass(facultyId);
+      // console.log(data);
+      
+
+      if (!data || data.hasCurrentClass === false) {
+        setCurrentClass(null);
+        return;
+      }
+
+      setCurrentClass(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const formatText = (value) =>
     value
       ?.toLowerCase()
@@ -48,74 +103,71 @@ const FacultyDashboard = () => {
 
   return (
     <div className="faculty-dashboard-container">
-      {/* Profile Card */}
-      <div className="faculty-profile-card">
-        <div className="faculty-profile-header">
-          <div className="faculty-avatar">{profile?.name?.charAt(0)}</div>
-
-          <div>
-            <h2>{profile.name}</h2>
-            <p>{profile.designation}</p>
-          </div>
-        </div>
-
-        <div className="faculty-profile-details">
+      <div className="dashboard-top-row">
+        {/* Minimal Profile Card */}
+        <div className="minimal-profile-card">
           <img
             src={imageUrl || "/default-avatar.png"}
             alt="Faculty"
-            className="faculty-profile-image"
+            className="faculty-profile-image-small"
           />
-          <div>
-            <label>Faculty Code</label>
-            <span>{profile.facultyCode}</span>
+          <div className="minimal-profile-info">
+            <h3>{profile.name}</h3>
+            <p className="designation">{formatText(profile.designation)}</p>
+            <p className="faculty-code">{profile.facultyCode}</p>
           </div>
+        </div>
 
-          <div>
-            <label>Designation</label>
-            <span>{formatText(profile.designation)}</span>
-          </div>
+        {/* Current Class Card */}
+        <div className="current-class-card">
+          {currentClass ? (
+            <div className="current-class-content">
+              <div className="class-info">
+                <h5 className="section-subtitle">Current Class</h5>
+                <h4 className="class-title">{currentClass.subjectName}</h4>
+                <div className="class-meta">
+                  <span className="meta-badge section-badge">
+                    Section {currentClass.sectionName}
+                  </span>
+                  <span className="meta-badge lecture-badge">
+                    Lecture {currentClass.lectureNum}
+                  </span>
+                  <span className="meta-badge time-badge">
+                    <i className="bi bi-clock me-1"></i>
+                    {currentClass.startTime.slice(0, 5)} - {currentClass.endTime.slice(0, 5)}
+                  </span>
+                </div>
+              </div>
 
-          <div>
-            <label>Department</label>
-            <span>{profile.departmentName}</span>
-          </div>
-
-          <div>
-            <label>Course</label>
-            <span>{profile.courseName}</span>
-          </div>
-
-          <div>
-            <label>Branch</label>
-            <span>{profile.branchName}</span>
-          </div>
-
-          <div>
-            <label>Status</label>
-            <span>{formatText(profile.status)}</span>
-          </div>
-
-          <div>
-            <label>Email</label>
-            <span>{profile.email}</span>
-          </div>
-
-          <div>
-            <label>Phone</label>
-            <span>{profile.phone}</span>
-          </div>
-
-          <div>
-            <label>Qualification</label>
-            <span>{profile.qualification}</span>
-          </div>
+              <div className="class-action">
+                <button
+                  className={`btn-mark-attendance ${
+                    currentClass.attendanceMarked ? "btn-marked" : "btn-unmarked"
+                  }`}
+                  onClick={handleAttendanceClick}
+                >
+                  {currentClass.attendanceMarked
+                    ? "View / Edit Attendance"
+                    : "Mark Attendance"}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="no-class-content">
+              <div className="no-class-icon">☕</div>
+              <h5 className="no-class-title">No Ongoing Class</h5>
+              <p className="no-class-text">
+                You do not have any classes scheduled right now. Take a break!
+              </p>
+            </div>
+          )}
         </div>
       </div>
 
       {/* Assignment Section */}
       <div className="faculty-assignment-section">
         <div className="section-header">
-          <h3>My Assigned Subjects</h3>
+          <h3>Assigned Subjects</h3>
         </div>
 
         <div className="assignment-table-wrapper">
@@ -155,7 +207,7 @@ const FacultyDashboard = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" className="no-data">
+                  <td colSpan="7" className="no-data">
                     No assignments found
                   </td>
                 </tr>

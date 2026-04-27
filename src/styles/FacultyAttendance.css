@@ -1,0 +1,301 @@
+/* ===== Page Base ===== */
+.attendance-page {
+  background-color: #f6f8fa;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+/* ===== Headings ===== */
+.attendance-page h2 {
+  font-weight: 600;
+  font-size: 22px;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+/* ===== Filter Row ===== */
+.filter-row {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+/* ===== Buttons ===== */
+.load-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.load-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* ===== Section Summary ===== */
+.section-summary {
+  background: #ffffff;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-top: 10px;
+}
+
+.section-summary h5 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.student-count {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ===== Quick Actions ===== */
+.quick-actions-container {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.quick-mark-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.quick-mark-title {
+  font-weight: 600;
+  color: #334155;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.quick-mark-input-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.quick-mark-input {
+  width: 100%;
+  height: 42px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+.quick-mark-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  background-color: #ffffff;
+}
+
+.quick-mark-input::placeholder {
+  color: #94a3b8;
+}
+
+.btn-apply {
+  height: 42px;
+  padding: 0 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-apply:hover {
+  background-color: #0056b3;
+}
+
+.btn-apply:active {
+  transform: translateY(1px);
+}
+
+/* Row 2: Bulk Actions */
+.bulk-actions-row {
+  display: flex;
+  gap: 12px;
+}
+
+.mark-btn-modern {
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-present-modern {
+  background-color: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.btn-present-modern:hover {
+  background-color: #dcfce7;
+  border-color: #86efac;
+}
+
+.btn-absent-modern {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.btn-absent-modern:hover {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+}
+
+/* ===== Table Section ===== */
+.table-section {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+/* Header */
+.table-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+/* Table */
+.table-container {
+  overflow-x: auto;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.student-table thead {
+  background-color: #f3f4f6;
+}
+
+.student-table th {
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.student-table td {
+  padding: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #374151;
+}
+
+.student-table tr:hover {
+  background-color: #f9fafb;
+}
+
+/* ===== Avatar ===== */
+.student-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+/* ===== Status Badge ===== */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-present {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.status-absent {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* ===== Checkbox ===== */
+.attendance-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* ===== Save Button ===== */
+.generate-btn-container {
+  padding: 16px;
+  text-align: right;
+  border-top: 1px solid #e5e7eb;
+}
+
+.generate-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.generate-btn:hover {
+  background-color: #0056b3;
+}
+
+/* ===== Loader ===== */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
