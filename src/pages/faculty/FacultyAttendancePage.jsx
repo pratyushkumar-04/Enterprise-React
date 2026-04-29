@@ -27,6 +27,7 @@ const FacultyAttendancePage = () => {
   const [selectedClassId, setSelectedClassId] = useState("");
   const [selectedClass, setSelectedClass] = useState(null);
   const [selectedLectureNum, setSelectedLectureNum] = useState("");
+  const [isReadOnly, setIsReadOnly] = useState(false);
 
   const facultyId = localStorage.getItem("id");
 
@@ -77,6 +78,10 @@ const FacultyAttendancePage = () => {
       const data = await getStudentsForAttendance(sessionId);
 
       const studentsArray = Array.isArray(data) ? data : data.students || [];
+
+      // Determine if session was already marked (students have present status)
+      const alreadyMarked = studentsArray.length > 0 && studentsArray[0].present !== null && studentsArray[0].present !== undefined;
+      setIsReadOnly(alreadyMarked);
 
       setStudents(
         studentsArray.map((student) => ({
@@ -283,71 +288,59 @@ const FacultyAttendancePage = () => {
 
       {sessionId && (
         <>
-          {/* <div className="quick-actions-bar d-flex justify-content-between align-items-center flex-wrap gap-3 mt-4 mb-3 p-3 bg-white rounded-3 shadow-sm border border-light">
-            <div className="d-flex align-items-center gap-2 flex-grow-1">
-              <span className="fw-semibold text-secondary me-2">Quick Mark:</span>
-              <input
-                type="text"
-                className="form-control quick-mark-input shadow-sm border-0 bg-light"
-                placeholder="Absent rolls (e.g., 101 104)"
-                value={absentRolls}
-                onChange={(e) => setAbsentRolls(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    applyAbsentRolls();
-                  }
-                }}
-              />
-              <button className="btn btn-primary px-4 fw-semibold shadow-sm" onClick={applyAbsentRolls}>Apply</button>
-            </div>
-            <div className="d-flex gap-3">
-              <button className="mark-btn btn-present shadow-sm" onClick={markAllPresent}>
-                Mark All Present
-              </button>
-              <button className="mark-btn btn-absent shadow-sm" onClick={markAllAbsent}>
-                Mark All Absent
-              </button>
-            </div>
-          </div> */}
-          <div className="quick-actions-container">
-            {/* Row 1: Quick Mark */}
-            <div className="quick-mark-row">
-              <span className="quick-mark-title">Quick Mark</span>
-              <div className="quick-mark-input-wrapper">
-                <input
-                  type="text"
-                  className="quick-mark-input"
-                  placeholder="Enter absent roll numbers separated by space (e.g., 101 104)"
-                  value={absentRolls}
-                  onChange={(e) => setAbsentRolls(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault();
-                      applyAbsentRolls();
-                    }
-                  }}
-                />
-              </div>
-              <button
-                className="btn-apply"
-                onClick={applyAbsentRolls}
+          {isReadOnly ? (
+            <div className="quick-actions-container d-flex justify-content-between align-items-center">
+              <span className="text-secondary fw-semibold">
+                <i className="bi bi-info-circle me-2"></i>
+                This attendance session is currently in read-only mode.
+              </span>
+              <button 
+                className="btn btn-primary px-4 fw-semibold shadow-sm"
+                onClick={() => setIsReadOnly(false)}
               >
-                Apply
+                Edit Attendance
               </button>
             </div>
+          ) : (
+            <div className="quick-actions-container">
+              {/* Row 1: Quick Mark */}
+              <div className="quick-mark-row">
+                <span className="quick-mark-title">Quick Mark</span>
+                <div className="quick-mark-input-wrapper">
+                  <input
+                    type="text"
+                    className="quick-mark-input"
+                    placeholder="Enter absent roll numbers separated by space (e.g., 101 104)"
+                    value={absentRolls}
+                    onChange={(e) => setAbsentRolls(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey) {
+                        e.preventDefault();
+                        applyAbsentRolls();
+                      }
+                    }}
+                  />
+                </div>
+                <button
+                  className="btn-apply"
+                  onClick={applyAbsentRolls}
+                >
+                  Apply
+                </button>
+              </div>
 
-            {/* Row 2: Bulk Actions */}
-            <div className="bulk-actions-row">
-              <button className="mark-btn-modern btn-present-modern" onClick={markAllPresent}>
-                Mark All Present
-              </button>
+              {/* Row 2: Bulk Actions */}
+              <div className="bulk-actions-row">
+                <button className="mark-btn-modern btn-present-modern" onClick={markAllPresent}>
+                  Mark All Present
+                </button>
 
-              <button className="mark-btn-modern btn-absent-modern" onClick={markAllAbsent}>
-                Mark All Absent
-              </button>
+                <button className="mark-btn-modern btn-absent-modern" onClick={markAllAbsent}>
+                  Mark All Absent
+                </button>
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="table-section">
             <div className="table-header">
@@ -377,7 +370,10 @@ const FacultyAttendancePage = () => {
                     </tr>
                   ) : (
                     students.map((student, index) => (
-                      <tr key={student.studentId}>
+                      <tr 
+                        key={student.studentId} 
+                        className={student.present ? "row-success" : "row-absent"}
+                      >
                         <td>{index + 1}</td>
 
                         <td>
@@ -411,6 +407,7 @@ const FacultyAttendancePage = () => {
                             type="checkbox"
                             className="attendance-checkbox"
                             checked={student.present}
+                            disabled={isReadOnly}
                             onChange={() => toggleAttendance(student.studentId)}
                           />
                         </td>
@@ -421,11 +418,13 @@ const FacultyAttendancePage = () => {
               </table>
             </div>
 
-            <div className="generate-btn-container">
-              <button className="generate-btn" onClick={handleSave}>
-                Save Attendance
-              </button>
-            </div>
+            {!isReadOnly && (
+              <div className="generate-btn-container">
+                <button className="generate-btn" onClick={handleSave}>
+                  Save Attendance
+                </button>
+              </div>
+            )}
           </div>
         </>
       )}

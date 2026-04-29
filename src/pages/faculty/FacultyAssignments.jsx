@@ -34,7 +34,7 @@ const FacultyAssignments = () => {
 
   const academicYear = useMemo(() => {
     if (!assignments.length) return "-";
-    return assignments[0].academicYear;
+    return assignments[0].academicYear || assignments[1].academicYear;
   }, [assignments]);
 
   if (loading) {

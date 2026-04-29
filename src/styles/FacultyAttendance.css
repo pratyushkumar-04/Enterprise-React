@@ -299,3 +299,29 @@
   justify-content: center;
   z-index: 999;
 }
+
+.row-absent {
+  background-color: #fef2f2;
+}
+
+.row-absent td {
+  color: #b91c1c;
+  border-bottom: 1px solid #fecaca;
+}
+
+.row-absent:hover {
+  background-color: #fee2e2;
+}
+
+.row-success {
+  background-color: #f0fdf4;
+}
+
+.row-success td {
+  color: #15803d;
+  border-bottom: 1px solid #bbf7d0;
+}
+
+.row-success:hover {
+  background-color: #dcfce7;
+}

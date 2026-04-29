@@ -47,3 +47,18 @@ export const getFacultyClassesForAttendance = async (
 
   return response.data;
 };
+
+export const getFacultyAttendanceSessions = async (
+  facultyId,
+  fromDate,
+  toDate
+) => {
+  const response = await instance.get(
+    `/attendance/faculty/${facultyId}/sessions`,
+    {
+      params: { fromDate, toDate }
+    }
+  );
+
+  return response.data;
+};

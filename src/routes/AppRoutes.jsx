@@ -32,6 +32,8 @@ import FacultyTimetable from "../pages/faculty/FacultyTimetable";
 import { CreateTimetable } from "../pages/admin/Timetable/CreateTimetable";
 import AdminSectionTimetable from "../pages/admin/Timetable/AdminSectionTimetable";
 import FacultyAttendancePage from "../pages/faculty/FacultyAttendancePage";
+import FacultyAttendanceHistory from "../pages/faculty/FacultyAttendanceHistory";
+import FacultyStudentAttendance from "../pages/faculty/FacultyStudentAttendance";
 
 const AppRoutes = () => {
   return (
@@ -96,6 +98,8 @@ const AppRoutes = () => {
         <Route path="assignments" element={<FacultyAssignments />} />
         <Route path="timetable" element={<FacultyTimetable />} />
         <Route path="attendance" element={<FacultyAttendancePage />} />
+        <Route path="attendance/history" element={<FacultyAttendanceHistory />}/>
+        <Route path="attendance/summary" element={<FacultyStudentAttendance/>}/>
         <Route path="attendance/:sessionId" element={<FacultyAttendancePage />} />
       </Route>
       {/* STUDENT */}
